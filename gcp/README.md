@@ -19,14 +19,23 @@ If you haven't done this step, please visit the [gcp signup page](https://cloud.
 # Creating a VM for the kaggle-kubeflow tutorial
 
 From this directory, you should run the following commands to
-create the initial VM and log in. It is important that you set
+create the initial VM and ssh in. It is important that you set
 the project id first, there are sensible defaults for everything
 else:
 
 ```
 export GCP_PROJECT=<the Project Id of the project you created>
+
+# This creates a firewall rule that allows any IP address to access certain ports
 ./network_create.sh
+
+# This will create a VM instance, with the firewall rule applied
 ./compute_create.sh
+
+# This will copy the scripts in the parent directory, so that you can follow the instructions on the top level README.
+./copy_scripts.sh
+
+# This will log you into the VM, once it is up and running.
 ./compute_ssh.sh
 ```
 
