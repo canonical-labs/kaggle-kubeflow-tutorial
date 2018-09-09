@@ -33,6 +33,8 @@ export GCP_PROJECT=<the Project Id of the project you created>
 ./compute_create.sh
 
 # This will copy the scripts in the parent directory, so that you can follow the instructions on the top level README.
+# NB: copy_scripts.sh will error if the VM isn't ready. Please re-run until it is successful.
+
 ./copy_scripts.sh
 
 # This will log you into the VM, once it is up and running.

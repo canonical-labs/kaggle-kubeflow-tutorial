@@ -1,5 +1,6 @@
 # Kaggle on Kubeflow on Ubuntu
-A simple tutorial that walks through running a kaggle experiment on kubeflow on ubuntu.
+
+This is a simple tutorial that walks through running a kaggle experiment on kubeflow on ubuntu.
 These instructions are highly reproducible and you'll be able to leverage them for any competition, with the ability to run your experiments locally or in the cloud.
 
 This tutorial is inpired by the [Kaggle on Kubeflow](https://www.kubeflow.org/blog/kaggle_on_kubeflow/) blog post on [kubeflow.org](https://www.kubeflow.org/).
@@ -7,14 +8,32 @@ This tutorial is inpired by the [Kaggle on Kubeflow](https://www.kubeflow.org/bl
 
 # Setup Instructions
 
-These instructions assume you have access to an Ubuntu operating system. If you already have access to an Ubuntu environment with sufficient memory, processing power, and disk space, and are comfortable using it, then skip step 1 and go to 2.
+## 0. Clone this repo
+
+For instance:
+```
+$> git clone https://github.com/canonical-labs/kaggle-kubeflow-tutorial.git
+$> cd kaggle-kubeflow-tutorial
+```
 
 ## 1. Create a Virtual Machine
 
-A virtual machine will give you a known starting place. There are multiple ways to create a VM - either on your laptop if it has enough juice, in a public cloud, or in your datacenter.
+These instructions assume you have access to an Ubuntu operating system. If you already have access to an Ubuntu environment with sufficient memory (eg at least 16GB), processing power (eg at least 4 cores), and disk space (at least 100GB free), and you are comfortable installing this software locally, then skip this step and go to 2.
 
-VM Creation instructions are provided for:
-- [Google](gcp/README.md)
+Another benefit of a virtual machine is that it will give you a known starting place. There are multiple ways to create a VM - either on your laptop if it has enough juice, in a public cloud, or in your datacenter.
+
+In this example, we'll use Google's cloud to create a VM. A full set of options and scripts are provided in the [gcp](gcp) directory, including the [gcp/README](gcp/README.md)
+
+The command summary to create a VM in GCP:
+
+```
+$> export GCP_PROJECT=<the Project Id of the project you created>
+$> gcp/network_create.sh
+$> gcp/compute_create.sh
+## NB: copy_scripts.sh will error if the VM isn't ready. Please re-run until it is successful.
+$> gcp/copy_scripts.sh
+$> gcp/compute_ssh.sh
+```
 
 ## 2. Make sure you have a GITHUB TOKEN
 
@@ -27,9 +46,9 @@ You'll need to generate a github token. You can do this on [github](https://gith
 
 The following commands are idempotent - they only install things if they are missing. At the end, you'll have a Kubeflow that you can log into. The last command will print the **port** number of the JupyterHub notebook. Combine that with the IP address of your ubuntu machine (eg the external IP address of a GCP VM instance)
 ```
-./scripts_download.sh
-export GITHUB_TOKEN=<your token>
-./scripts_run.sh
+:~$ ./scripts_download.sh
+:~$ export GITHUB_TOKEN=<your token>
+:~$ ./scripts_run.sh
 ```
 
 ## 4. Create a JupyterHub server based on Kaggle
