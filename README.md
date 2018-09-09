@@ -50,12 +50,33 @@ The following commands are idempotent - they only install things if they are mis
 :~$ export GITHUB_TOKEN=<your token>
 :~$ ./scripts_run.sh
 ```
+You should see the Jupyter port number at the end:
+![jupyter port](images/tutorial.1.jupyter-port.png)
+
+**NB: If you run into errors, run the cleanup script and try again:**
+```
+:~$ ./cleanup_k8s.sh
+```
 
 ## 4. Create a JupyterHub server based on Kaggle
 
 **NB: This step can take several minutes**. If running in a public cloud, this can take around 10 minutes. If running locally, the time will be based on your network speed and latency.
 
-### JupyterHub - Spawn Server
+### 4.a. Enter the JupyterHub URL in the browser
+
+1. If running a VM, go back to your laptop and run:
+```
+gcp/compute_create.sh
+```
+![vm address](images/tutorial.2.vm-address.png)
+
+2. Use the **EXTERNAL_IP** address in your browser, combined with the **PORT** address from the ` ./scripts_run.sh` command.
+```
+http://<EXTERNAL_IP>:<PORT>
+```
+
+
+### 4.b. Launch Jupyter Server
 
 - kaggle image: `gcr.io/kubeflow-images-public/kaggle-notebook:v20180713`
 - CPU: `4.0`
