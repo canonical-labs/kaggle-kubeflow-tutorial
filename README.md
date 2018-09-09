@@ -74,13 +74,26 @@ gcp/compute_create.sh
 ```
 http://<EXTERNAL_IP>:<PORT>
 ```
+![browser url](images/tutorial.3.browser-login.png)
+
+3. You should then see this screen. **Press Start My Server**.
+![browser url](images/tutorial.4.browser-start.png)
 
 
 ### 4.b. Launch Jupyter Server
 
+This next part will take around 10 minutes when running in a public cloud. Locally it could take much longer. The reason is that the kaggle image is around 21GB. In other words, you are downloading 21GB of data.
+
+This is what the screen should look like after you enter these values:
+
 - kaggle image: `gcr.io/kubeflow-images-public/kaggle-notebook:v20180713`
 - CPU: `4.0`
 - MEM: `10Gi`
+
+The screen:
+
+![browser url](images/tutorial.5.browser-spawn.png)
+
 
 ## 5. Signup to Kaggle
 
