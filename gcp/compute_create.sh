@@ -5,7 +5,9 @@
 # this exercise. The user is responsible for defining the project.
 #
 
-. "common.sh"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+echo ${DIR}
+. "${DIR}/common.sh"
 
 # You can associate a service account explicitly. The get_svc_account.sh script
 # looks for the default *compute* service account. But, this doesn't seem necessary.
