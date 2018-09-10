@@ -47,7 +47,7 @@ You'll need to generate a github token. You can do this on [github](https://gith
 The following commands are idempotent - they only install things if they are missing. At the end, you'll have a Kubeflow that you can log into. The last command will print the **port** number of the JupyterHub notebook. Combine that with the IP address of your ubuntu machine (eg the external IP address of a GCP VM instance)
 ```
 :~$ ./scripts_download.sh
-:~$ export GITHUB_TOKEN=<your token>
+  :~$ export GITHUB_TOKEN=<your token>
 :~$ ./scripts_run.sh
 ```
 You should see the Jupyter port number at the end:
@@ -66,7 +66,7 @@ You should see the Jupyter port number at the end:
 
 1. If running a VM, go back to your laptop and run:
 ```
-gcp/compute_create.sh
+gcp/compute_list.sh
 ```
 ![vm address](images/tutorial.2.vm-address.png)
 
@@ -102,8 +102,53 @@ The screen:
 - You need to join and download your username and token.
 - You'll need to **join** the [titanic competition](https://www.kaggle.com/c/titanic)
 
-## 6. Follow the remainig instructions to launch a notebook.
+## 6. Install Kaggle in the Jupyter Terminal
 
-Follow the instructions on [Kaggle on Kubeflow](https://www.kubeflow.org/blog/kaggle_on_kubeflow/) blog post on [kubeflow.org](https://www.kubeflow.org/).
+Now that you have a terminal on your Jupyter account, you'll need to install the kaggle CLI:
 
-**TBD: Move those instructions to this section**
+```
+jovyan@jupyter-tutorial:~$ export PYTHONUSERBASE=/home/jovyan/.local
+jovyan@jupyter-tutorial:~$ pip install --user kaggle
+jovyan@jupyter-tutorial:~$ export PATH=/home/jovyan/.local/bin:$PATH
+```
+## 6. Download the Titanic Competition and a Kernel
+
+The Kernel holds the notebook, which you'll start from the web browser.
+
+```
+jovyan@jupyter-tutorial:~$ export KAGGLE_USERNAME=<your account>
+jovyan@jupyter-tutorial:~$ export KAGGLE_KEY=<your key>
+jovyan@jupyter-tutorial:~$ mkdir ~/input; cd ~/input; kaggle competitions download -c titanic
+jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
+```
+
+## 7. Run the notebook
+
+Open the notebook in the browser, and run all cells.
+
+## 8. Review Visualization
+
+Here are a few examples of the visualizations that are present in the notebook:
+
+#### 8.1 Visual 1
+
+![visual #1](images/jupyter.kaggle.visuals-1.png)
+
+#### 8.2 Visual 2
+
+![visual #2](images/jupyter.kaggle.visuals-2.png)
+
+#### 8.3 Visual 3
+
+![visual #3](images/jupyter.kaggle.visuals-3.png)
+
+#### 8.4 Visual 4
+
+![visual #4](images/jupyter.kaggle.visuals-4.png)
+
+#### 8.5 Visual 5
+
+![visual #5](images/jupyter.kaggle.visuals-5.png)
+
+
+## 9. Review Code
