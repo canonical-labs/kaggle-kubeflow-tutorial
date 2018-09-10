@@ -117,6 +117,24 @@ The screen:
 
 ## 6. Install Kaggle in the Jupyter Terminal
 
+### 6.1 Create a new Terminal in Jupyter
+
+#### 6.1.1. Top level Menu
+
+Jupyter lets you create a terminal, ie a shell, which allows you to run commands.
+
+![jupyter terminal](images/jupyter.kaggle.2-menu.png)
+
+#### 6.1.1. Blank Terminal
+
+The result is the start of a new Terminal that allows you to enter the commands in the
+next section
+
+![jupyter terminal](images/jupyter.kaggle.3-terminal.png)
+
+
+### 6.2. Execute commands in the Terminal
+
 Now that you have a terminal on your Jupyter account, you'll need to install the kaggle CLI:
 
 ```
@@ -144,7 +162,7 @@ jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction
 
 ### 7.2 A Titanic Kernel
 
-![kaggle competition](images/jupyter.kaggle.6-kernel-download.png)
+![kaggle kernel](images/jupyter.kaggle.6-kernel-download.png)
 
 
 ## 8. Run the notebook
