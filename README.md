@@ -97,10 +97,23 @@ The screen:
 
 ## 5. Signup to Kaggle
 
-### Kaggle
+### 5.1. Kaggle
 
-- You need to join and download your username and token.
+- You need to join kaggle and download an API token.
+
+![kaggle account](images/kaggle.1-acct.png)
+
+![kaggle token](images/kaggle.2b-api.png)
+
+
+### 5.2. Join Kaggle Competition
+
+
 - You'll need to **join** the [titanic competition](https://www.kaggle.com/c/titanic)
+
+
+![kaggle competition](images/kaggle.0-comp-signup.png)
+
 
 ## 6. Install Kaggle in the Jupyter Terminal
 
@@ -111,7 +124,10 @@ jovyan@jupyter-tutorial:~$ export PYTHONUSERBASE=/home/jovyan/.local
 jovyan@jupyter-tutorial:~$ pip install --user kaggle
 jovyan@jupyter-tutorial:~$ export PATH=/home/jovyan/.local/bin:$PATH
 ```
-## 6. Download the Titanic Competition and a Kernel
+
+
+
+## 7. Download the Titanic Competition and a Kernel
 
 The Kernel holds the notebook, which you'll start from the web browser.
 
@@ -122,33 +138,42 @@ jovyan@jupyter-tutorial:~$ mkdir ~/input; cd ~/input; kaggle competitions downlo
 jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
 ```
 
-## 7. Run the notebook
+### 7.1 Titanic Competition
+
+![kaggle competition](images/jupyter.kaggle.5-comp-download.png)
+
+### 7.2 A Titanic Kernel
+
+![kaggle competition](images/jupyter.kaggle.6-kernel-download.png)
+
+
+## 8. Run the notebook
 
 Open the notebook in the browser, and run all cells.
 
-## 8. Review Visualization
+## 9. Review Visualization
 
 Here are a few examples of the visualizations that are present in the notebook:
 
-#### 8.1 Visual 1
+#### 9.1 Visual 1
 
 ![visual #1](images/jupyter.kaggle.visuals-1.png)
 
-#### 8.2 Visual 2
+#### 9.2 Visual 2
 
 ![visual #2](images/jupyter.kaggle.visuals-2.png)
 
-#### 8.3 Visual 3
+#### 9.3 Visual 3
 
 ![visual #3](images/jupyter.kaggle.visuals-3.png)
 
-#### 8.4 Visual 4
+#### 9.4 Visual 4
 
 ![visual #4](images/jupyter.kaggle.visuals-4.png)
 
-#### 8.5 Visual 5
+#### 9.5 Visual 5
 
 ![visual #5](images/jupyter.kaggle.visuals-5.png)
 
 
-## 9. Review Code
+## 10. Review Code
