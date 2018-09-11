@@ -239,6 +239,7 @@ Here is a summary of all the steps, starting from the initial shell:
 
 ```
 # From initial shell:
+# =======================
 git clone https://github.com/canonical-labs/kaggle-kubeflow-tutorial.git
 cd kaggle-kubeflow-tutorial
 export GCP_PROJECT=<the Project Id of the project you created>
@@ -248,15 +249,18 @@ gcp/copy_scripts.sh
 gcp/compute_ssh.sh
 
 # From the VM:
+# ============
 export GITHUB_TOKEN=<your token>
 ./scripts_download.sh
 ./scripts_run.sh # note the jupyterhub port number
 exit
 
 # From the initial shell:
+# =======================
 gcp/compute_list.sh # note the external IP address
 
 # From the browser
+# ================
 http://<EXTERNAL_IP>:<PORT>
 # enter any username / password
 # <click> Start My Server
@@ -264,6 +268,7 @@ http://<EXTERNAL_IP>:<PORT>
 # <click> Spawn
 
 # From jupyter terminal:
+# ======================
 # <click> New --> Terminal
 export PYTHONUSERBASE=/home/jovyan/.local
 pip install --user kaggle
@@ -278,5 +283,9 @@ cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-
 # <click> the notebook introduction-to..
 # <click>  Cell -> Run All
 # View the results and code
+
+# From the initial shell:
+# =======================
+gcp/compute_delete.sh
 
 ```
