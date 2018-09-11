@@ -13,10 +13,14 @@ _NB: This tutorial is inpired by the [Kaggle on Kubeflow](https://www.kubeflow.o
 
 # Setup Instructions
 
-## 0.1. Get a shell to run commands
+## 0. Start a shell and download this repo
+
+This setup relies on scripts that you'll need to run from a shell.
 
 An easy, compute independent way to get a shell is to launch one in the browser. Google's
 cloud console comes with this mechanism. So we'll start there.
+
+### 0.1. Start Cloud Shell
 
 Assuming you've created your google cloud account and you've created a project, go to the [console](https://console.cloud.google.com) and launch the shell:
 
@@ -26,7 +30,7 @@ This will bring up a section at the bottom of the screen, which is your shell:
 
 ![cloud shell section](images/cloud.shell.2.png)
 
-## 0.2. Clone this repo
+### 0.2. Clone this repo
 
 From your shell, please run the following:
 
@@ -83,7 +87,7 @@ You should see the Jupyter port number at the end:
 
 **NB: This step can take several minutes**. If running in a public cloud, this can take around 10 minutes. If running locally, the time will be based on your network speed and latency.
 
-### 4.a. Enter the JupyterHub URL in the browser
+### 4.1. Enter the JupyterHub URL in the browser
 
 1. If running a VM, go back to your laptop and run:
 
@@ -103,7 +107,7 @@ http://<EXTERNAL_IP>:<PORT>
 ![browser url](images/tutorial.4.browser-start.png)
 
 
-### 4.b. Launch Jupyter Server
+### 4.2. Launch Jupyter Server
 
 This next part will take around 10 minutes when running in a public cloud. Locally it could take much longer. The reason is that the kaggle image is around 21GB. In other words, you are downloading 21GB of data.
 
@@ -166,24 +170,26 @@ jovyan@jupyter-tutorial:~$ pip install --user kaggle
 jovyan@jupyter-tutorial:~$ export PATH=/home/jovyan/.local/bin:$PATH
 ```
 
-
-
 ## 7. Download the Titanic Competition and a Kernel
 
 The Kernel holds the notebook, which you'll start from the web browser.
+
+### 7.1. Titanic Competition
 
 ```
 jovyan@jupyter-tutorial:~$ export KAGGLE_USERNAME=<your account>
 jovyan@jupyter-tutorial:~$ export KAGGLE_KEY=<your key>
 jovyan@jupyter-tutorial:~$ mkdir ~/input; cd ~/input; kaggle competitions download -c titanic
-jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
 ```
-
-### 7.1 Titanic Competition
 
 ![kaggle competition](images/jupyter.kaggle.5-comp-download.png)
 
-### 7.2 A Titanic Kernel
+
+### 7.2. A Titanic Kernel
+
+```
+jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
+```
 
 ![kaggle kernel](images/jupyter.kaggle.6-kernel-download.png)
 
@@ -198,23 +204,23 @@ Open the notebook in the browser, and run all cells.
 
 Here are a few examples of the visualizations that are present in the notebook:
 
-#### 9.1 Visual 1
+#### 9.1. Visual 1
 
 ![visual #1](images/jupyter.kaggle.visuals-1.png)
 
-#### 9.2 Visual 2
+#### 9.2. Visual 2
 
 ![visual #2](images/jupyter.kaggle.visuals-2.png)
 
-#### 9.3 Visual 3
+#### 9.3. Visual 3
 
 ![visual #3](images/jupyter.kaggle.visuals-3.png)
 
-#### 9.4 Visual 4
+#### 9.4. Visual 4
 
 ![visual #4](images/jupyter.kaggle.visuals-4.png)
 
-#### 9.5 Visual 5
+#### 9.5. Visual 5
 
 ![visual #5](images/jupyter.kaggle.visuals-5.png)
 
@@ -267,7 +273,10 @@ export KAGGLE_KEY=<your key>
 mkdir ~/input; cd ~/input; kaggle competitions download -c titanic
 cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
 
-# View the notebook, Cell -> Run All
+# <click> Jupyter logo
+# <click> work folder
+# <click> the notebook introduction-to..
+# <click>  Cell -> Run All
 # View the results and code
 
 ```
