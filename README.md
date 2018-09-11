@@ -1,16 +1,35 @@
 # Kaggle on Kubeflow on Ubuntu
 
-This is a simple tutorial that walks through running a kaggle experiment on kubeflow on ubuntu.
+This is a simple tutorial that walks through running a kaggle experiment on kubeflow on microk8s on ubuntu.
 These instructions are highly reproducible and you'll be able to leverage them for any competition, with the ability to run your experiments locally or in the cloud.
 
-This tutorial is inpired by the [Kaggle on Kubeflow](https://www.kubeflow.org/blog/kaggle_on_kubeflow/) blog post on [kubeflow.org](https://www.kubeflow.org/).
+The demo will start with instructions for running everything within [GCP](https://cloud.google.com/), including a shell to run all the commands below. All you need is a browser.
 
+At the end of the exercise, you'll end up with a deployment that looks something like this:
+
+![deployment diagram](images/deployment.diagram.1.png)
+
+_NB: This tutorial is inpired by the [Kaggle on Kubeflow](https://www.kubeflow.org/blog/kaggle_on_kubeflow/) blog post on [kubeflow.org](https://www.kubeflow.org/)._
 
 # Setup Instructions
 
-## 0. Clone this repo
+## 0.1. Get a shell to run commands
 
-For instance:
+An easy, compute independent way to get a shell is to launch one in the browser. Google's
+cloud console comes with this mechanism. So we'll start there.
+
+Assuming you've created your google cloud account and you've created a project, go to the [console](https://console.cloud.google.com) and launch the shell:
+
+![cloud shell link](images/cloud.shell.1.png)
+
+This will bring up a section at the bottom of the screen, which is your shell:
+
+![cloud shell section](images/cloud.shell.2.png)
+
+## 0.2. Clone this repo
+
+From your shell, please run the following:
+
 ```
 $> git clone https://github.com/canonical-labs/kaggle-kubeflow-tutorial.git
 $> cd kaggle-kubeflow-tutorial
@@ -45,15 +64,17 @@ You'll need to generate a github token. You can do this on [github](https://gith
 ## 3. Setup Kubeflow and necessary Tools
 
 The following commands are idempotent - they only install things if they are missing. At the end, you'll have a Kubeflow that you can log into. The last command will print the **port** number of the JupyterHub notebook. Combine that with the IP address of your ubuntu machine (eg the external IP address of a GCP VM instance)
+
 ```
+:~$ export GITHUB_TOKEN=<your token>
 :~$ ./scripts_download.sh
-  :~$ export GITHUB_TOKEN=<your token>
 :~$ ./scripts_run.sh
 ```
 You should see the Jupyter port number at the end:
 ![jupyter port](images/tutorial.1.jupyter-port.png)
 
 **NB: If you run into errors, run the cleanup script and try again:**
+
 ```
 :~$ ./cleanup_k8s.sh
 ```
@@ -65,12 +86,14 @@ You should see the Jupyter port number at the end:
 ### 4.a. Enter the JupyterHub URL in the browser
 
 1. If running a VM, go back to your laptop and run:
+
 ```
 gcp/compute_list.sh
 ```
 ![vm address](images/tutorial.2.vm-address.png)
 
 2. Use the **EXTERNAL_IP** address in your browser, combined with the **PORT** address from the ` ./scripts_run.sh` command.
+
 ```
 http://<EXTERNAL_IP>:<PORT>
 ```
@@ -169,6 +192,8 @@ jovyan@jupyter-tutorial:~$ cd ~/work; kaggle kernels pull arthurtok/introduction
 
 Open the notebook in the browser, and run all cells.
 
+![Run All](images/jupyter.kaggle.9b-run-all.png)
+
 ## 9. Review Visualization
 
 Here are a few examples of the visualizations that are present in the notebook:
@@ -194,4 +219,55 @@ Here are a few examples of the visualizations that are present in the notebook:
 ![visual #5](images/jupyter.kaggle.visuals-5.png)
 
 
-## 10. Review Code
+## 10. Delete your VM
+
+Once you are done exploring, please delete your VM. Otherwise you'll continue to incur some costs associated with the running VM.
+
+```
+gcp/compute_delete.sh
+```
+
+## Summary of all steps
+
+Here is a summary of all the steps, starting from the initial shell:
+
+```
+# From initial shell:
+git clone https://github.com/canonical-labs/kaggle-kubeflow-tutorial.git
+cd kaggle-kubeflow-tutorial
+export GCP_PROJECT=<the Project Id of the project you created>
+gcp/network_create.sh
+gcp/compute_create.sh
+gcp/copy_scripts.sh
+gcp/compute_ssh.sh
+
+# From the VM:
+export GITHUB_TOKEN=<your token>
+./scripts_download.sh
+./scripts_run.sh # note the jupyterhub port number
+exit
+
+# From the initial shell:
+gcp/compute_list.sh # note the external IP address
+
+# From the browser
+http://<EXTERNAL_IP>:<PORT>
+# enter any username / password
+# <click> Start My Server
+# gcr.io/kubeflow-images-public/kaggle-notebook:v20180713 ,, 4.0 ,, 10Gi
+# <click> Spawn
+
+# From jupyter terminal:
+# <click> New --> Terminal
+export PYTHONUSERBASE=/home/jovyan/.local
+pip install --user kaggle
+export PATH=/home/jovyan/.local/bin:$PATH
+export KAGGLE_USERNAME=<your account>
+export KAGGLE_KEY=<your key>
+mkdir ~/input; cd ~/input; kaggle competitions download -c titanic
+cd ~/work; kaggle kernels pull arthurtok/introduction-to-ensembling-stacking-in-python
+
+# View the notebook, Cell -> Run All
+# View the results and code
+
+```
