@@ -1,30 +1,14 @@
 #!/bin/bash
 
 #
-# Downloads some scripts to facilitate installing tools needed to setup kubeflow, like
+# Moves some scripts to facilitate installing tools needed to setup kubeflow, like
 # microk8s and ksonnet
 #
-
 set -u
 
 mkdir -p ${HOME}/kubeflow
-FILE=${HOME}/kubeflow/install-kubeflow-tools.sh
-if [ ! -f ${FILE} ]; then
-  echo "DOWNLOADING install-kubeflow-tools.sh"
-  curl -L https://bit.ly/2tp2aOo > ${FILE}
-  chmod a+x ${FILE}
-else
-  echo "SKIPPING download of install-kubeflow-tools.sh, already exists"
-fi
-
-FILE=${HOME}/kubeflow/install-kubeflow.sh
-if [ ! -f ${FILE} ]; then
-  echo "DOWNLOADING install-kubeflow.sh"
-  curl -L https://bit.ly/2tndL0g > ${FILE}
-  chmod a+x ${FILE}
-else
-  echo "SKIPPING download of install-kubeflow.sh, already exists"
-fi
+cp -f ${HOME}/install-kubeflow-tools.sh ${HOME}/kubeflow/install-kubeflow-tools.sh
+cp -f ${HOME}/install-kubeflow.sh ${HOME}/kubeflow/install-kubeflow.sh
 
 grep KUBECONFIG ${HOME}/.bashrc > /dev/null 2>&1
 if [ $? -eq 0 ]; then
