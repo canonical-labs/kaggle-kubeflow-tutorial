@@ -45,8 +45,6 @@ cat <<EOF | kubectl apply -f -
     namespace: kube-system
 EOF
 
-# /api/v1/namespaces/kubeflow/services/https:kubernetes-dashboard:/proxy/
-
 # Print the token that is needed to view the dashboard
 printf "\nTo access the kubernetes dashboard, go to:\n"
 printf "\n\t http://<EXTERNAL_IP>:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/ \n"
