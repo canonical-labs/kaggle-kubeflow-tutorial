@@ -65,7 +65,9 @@ $> gcp/compute_ssh.sh
 You'll need to generate a github token. You can do this on [github](https://github.com/settings/tokens)
 - You only need to grant access to public repositories (eg public_repo checkbox)
 
-## 3. Setup Kubeflow and necessary Tools
+## 3.0 Install Tools
+
+### 3.1 Install Microk8s and Kubeflow install tools
 
 The following commands are idempotent - they only install things if they are missing. At the end, you'll have a Kubeflow that you can log into. The last command will print the **port** number of the JupyterHub notebook. Combine that with the IP address of your ubuntu machine (eg the external IP address of a GCP VM instance)
 
@@ -82,6 +84,27 @@ You should see the Jupyter port number at the end:
 ```
 :~$ ./cleanup_k8s.sh
 ```
+
+### 3.2 [*Optional*] Allow access to the kubernetes dashboard
+
+```
+:~$ ./expose-dashboard.sh
+```
+
+Running this script on the server will do the following:
+1) Run kubectl proxy
+2) Add an RBAC account and cluster role binding for access
+3) Print the token for that relationship (to be used in the UI)
+4) Print the URL to use.
+
+### 3.0 Exit the VM
+
+At this point, there is nothing more that you need to do directly on the server. Time to exit the VM.
+
+```
+:~$ exit
+```
+
 
 ## 4. Create a JupyterHub server based on Kaggle
 
@@ -253,6 +276,8 @@ gcp/compute_ssh.sh
 export GITHUB_TOKEN=<your token>
 ./scripts_download.sh
 ./scripts_run.sh # note the jupyterhub port number
+# Next Line is Optional
+./expose-dashboard.sh
 exit
 
 # From the initial shell:
